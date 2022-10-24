@@ -14,7 +14,7 @@ const CountDownComp: React.FC = () => {
 			const now = new Date();
 			const differance = target - now.getTime();
 
-			console.log(differance);
+			// console.log(differance);
 
 			const d = Math.floor(differance / (1000 * 60 * 60 * 24));
 			setDays(d);

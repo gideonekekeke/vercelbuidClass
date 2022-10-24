@@ -7,11 +7,24 @@ interface Iprops {
 	btnText: string;
 	bg: string;
 	col: string;
+	borderCol1: string[];
+	count: number;
 }
 
-const GlobalButton: React.FC<Iprops> = ({ btnText, icon, bg, col }) => {
+const GlobalButton: React.FC<Iprops> = ({
+	btnText,
+	icon,
+	bg,
+	col,
+	borderCol1,
+	count,
+}) => {
 	return (
-		<Button cols={col} bgs={bg}>
+		<Button
+			bx={borderCol1[count % borderCol1.length]}
+			cc={borderCol1[count % borderCol1.length]}
+			cols={col}
+			bgs={bg}>
 			<Icn>{icon}</Icn>
 			{btnText}
 		</Button>
@@ -26,7 +39,12 @@ const Icn = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
-const Button = styled.div<{ bgs: string; cols: string }>`
+const Button = styled.div<{
+	bgs: string;
+	cols: string;
+	cc: string;
+	bx: string;
+}>`
 	width: 200px;
 	height: 45px;
 	background-color: ${(myprops) => myprops.bgs};
@@ -38,5 +56,7 @@ const Button = styled.div<{ bgs: string; cols: string }>`
 	border-radius: 5px;
 	margin-left: 20px;
 	border: 1px solid black;
+	border-color: ${(props) => props.cc};
 	font-weight: bold;
+	box-shadow: ${(props) => props.bx} 0px 48px 100px 0px;
 `;
